@@ -1,19 +1,14 @@
-export const PUSH_MESSAGE_LIST = 'PUSH_MESSAGE_LIST';
-export const CLEAR_MESSAGE_LIST = 'CLEAR_MESSAGE_LIST';
+import {MESSAGE_LIST} from '../actionType';
+import createAction from '../createAction';
 
-export function updateMessageList(dispatch){
-    dispatch({
-        type: PUSH_MESSAGE_LIST,
-        payload: {
-            user: '张三',
-            time: new Date(),
-            msg: '发了一堆信息'
-        }
+export function updateMessageList(){
+    createAction(MESSAGE_LIST.PUSH,{
+        user: '张三',
+        time: new Date(),
+        msg: '发了一堆信息'
     })
 }
 
-export function clearMessageList(dispatch){
-    dispatch({
-        type: CLEAR_MESSAGE_LIST
-    });
+export function clearMessageList(){
+    createAction(MESSAGE_LIST.CLEAR)
 }

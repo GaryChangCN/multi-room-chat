@@ -1,8 +1,6 @@
-export const CHANGE_HEADER_TITLE ='CHANGE_HEADER_TITLE';
+import createAction from '../createAction';
+import {HEADER} from '../actionType';
 
-export function changeHeaderTitle(dispatch,title){
-    dispatch({
-        type: CHANGE_HEADER_TITLE,
-        payload: title
-    })
+export function changeHeaderTitle(title){
+    createAction(HEADER.CHANGE_TITLE,title);
 }

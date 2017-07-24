@@ -25,11 +25,11 @@ class UserInput extends Component {
         onSubmit(value);
     }
     render(){
-        let {value, clearUserInput} = this.props;
+        let {value, handleClear} = this.props;
         return (
             <div className="user-input">
                 <div className="control">
-                    <div className="clear" onClick={clearUserInput}>清空</div>
+                    <div className="clear" onClick={handleClear}>清空</div>
                     <div className="submit" onClick={this.handleSubmit}>发送</div>
                 </div>
                 <textarea cols="20" rows="8"
@@ -48,13 +48,16 @@ function mapStateToProps({userInput: {value}}){
     }
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(){
     return {
         onChange(value){
-            onChangeUserInput(dispatch, value);
+            onChangeUserInput(value);
         },
         onSubmit(value){
-            sendUserInput(dispatch, value);
+            sendUserInput(value);
+        },
+        handleClear(value){
+            clearUserInput(value);
         }
     }
 }

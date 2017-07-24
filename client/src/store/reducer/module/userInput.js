@@ -1,4 +1,4 @@
-import {ONCHANG_USER_INPUT,CLEAR_USER_INPUT} from '../../action/userInput';
+import {USERINPUT} from '../../actionType';
 
 var defaultState = {
     value: ""
@@ -6,9 +6,9 @@ var defaultState = {
 
 export default function reducer (state = defaultState , action){
     switch (action.type) {
-        case CLEAR_USER_INPUT:
+        case USERINPUT.CLEAR:
             return {...state, value: ""};
-        case ONCHANG_USER_INPUT:
+        case USERINPUT.CHANGE:
             return {...state, value: action.payload};
         default:
             return state;

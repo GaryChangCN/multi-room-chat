@@ -1,10 +1,10 @@
 var defaultState = {
 	title:'name'
 }
-import {CHANGE_HEADER_TITLE} from '../../action/header';
+import {HEADER} from '../../actionType';
 function reducer(state = defaultState, action) {
 	switch (action.type) {
-		case CHANGE_HEADER_TITLE:
+		case HEADER.CHANGE_TITLE:
 			return {...state, title: action.payload};
 		default:
 			return state;
