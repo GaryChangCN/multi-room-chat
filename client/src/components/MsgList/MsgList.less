@@ -1,0 +1,44 @@
+.pack-msg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    .clear-screen{
+        user-select: none;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+        transition: transform 0.2s;
+        &:hover{
+            transform: scale(1.3);
+        }
+        text-align: center;
+        line-height: 30px;
+        z-index: 40;
+    }
+}
+.msg-list{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    border-bottom: 1px solid #000;
+    position: absolute;
+    .msg-item-container{
+        width: 100%;
+        .msg-item{
+            width: 100%;
+            padding: 10px;
+            border-bottom: 1px solid #e9e9e9;
+            &:nth-child(odd){
+                background-color: #e9e9e9;
+            }
+            .user-name{
+                font-size: 12px;
+                font-style: oblique;
+            }
+        }
+    }
+}

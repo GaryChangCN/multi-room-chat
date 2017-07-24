@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {createStore,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
-import reducer from './reducer';
+import reducer from './store/reducer';
 
 import {composeWithDevTools} from 'redux-devtools-extension';
 
@@ -12,18 +12,17 @@ const store = createStore(reducer,composeWithDevTools(
     applyMiddleware(thunk,promise)
 ));
 
-import View from './components/View.jsx';
+import Router from './page/Router';
 
-import './index.less';
-class Index extends Component{
+class Main extends Component{
 	render(){
 		return (
 			<Provider store={store}>
-				<View></View>
+				<Router></Router>
 			</Provider>
 		)
 	}
 }
 
 var app=document.getElementById("app");
-ReactDOM.render(<Index/>,app);
+ReactDOM.render(<Main/>,app);

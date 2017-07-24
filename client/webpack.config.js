@@ -1,10 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
+const processPlugin = require('webpack-simple-progress-plugin');
 
-let plugins = [];
+let plugins = [new processPlugin()];
 let entry = "./src/index.jsx";
 if (process.env.NODE_ENV == "production") {
     plugins = [
+        new processPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: JSON.stringify('production')
