@@ -2,17 +2,23 @@ import createAction from '../createAction';
 import {USERINPUT} from '../actionType';
 
 export function sendUserInput(value){
-    // .....  websocket
-    console.log(value);
-    // ....
-    createAction(USERINPUT.SEND);
-    createAction(USERINPUT.CLEAR);
+    return (dispatch) => {
+        // .....  websocket
+        console.log(value);
+        // ....
+        dispatch(createAction(USERINPUT.SEND));
+        dispatch(createAction(USERINPUT.CLEAR));
+    }
 }
 
 export function clearUserInput(){
-    createAction(USERINPUT.CLEAR);
+    return (dispatch) => {
+        dispatch(createAction(USERINPUT.CLEAR));
+    }
 }
 
 export function onChangeUserInput(value){
-    createAction(USERINPUT.CHANGE, value);
+    return (dispatch) => {
+        dispatch(createAction(USERINPUT.CHANGE, value));
+    }
 }

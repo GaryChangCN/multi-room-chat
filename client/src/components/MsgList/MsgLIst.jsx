@@ -50,7 +50,7 @@ function mapStateToProps({msgList: {value}}){
 function mapDispatchToProps(dispatch){
     return {
         clearScreen(){
-            clearMessageList();
+            dispatch(clearMessageList());
         }
     }
 }

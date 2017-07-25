@@ -48,16 +48,16 @@ function mapStateToProps({userInput: {value}}){
     }
 }
 
-function mapDispatchToProps(){
+function mapDispatchToProps(dispatch){
     return {
         onChange(value){
-            onChangeUserInput(value);
+            dispatch(onChangeUserInput(value));
         },
         onSubmit(value){
-            sendUserInput(value);
+            dispatch(sendUserInput(value));
         },
         handleClear(value){
-            clearUserInput(value);
+            dispatch(clearUserInput(value));
         }
     }
 }

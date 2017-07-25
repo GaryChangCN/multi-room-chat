@@ -21,10 +21,10 @@ function mapStateToProps({header:{title}}){
         title
     }
 }
-function mapDispatchToProps(){
+function mapDispatchToProps(dispatch){
     return {
         change(){
-            updateMessageList();
+            dispatch(updateMessageList());
         }
     }
 }
