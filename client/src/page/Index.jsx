@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
 
 import Header from '../components/Header/Header';
 import OnlineList from '../components/OnlineList/OnlineList';
@@ -6,9 +7,14 @@ import MsgList from '../components/MsgList/MsgLIst';
 import UserInput from '../components/UserInput/UserInput';
 import './index.less';
 
-export default class Index extends Component {
+class Index extends Component {
     constructor(props){
         super(props);
+    }
+    componentWillMount(){
+        if(!this.props.hasRoomValue){
+            this.props.history.push('/register');
+        }
     }
     render(){
         return (
@@ -31,3 +37,9 @@ export default class Index extends Component {
         )
     }
 }
+
+export default connect((state)=>{
+    return {
+        hasRoomValue:state.register.hasRoomValue
+    }
+},null)(Index);
