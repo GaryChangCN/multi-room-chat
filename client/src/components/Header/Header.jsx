@@ -8,17 +8,22 @@ class Header extends Component {
         super(props);
     }
     render(){
+        let {title, roomId} = this.props;
         return (
-            <div className="pageHeader flex">
-                <span>{this.props.title}</span>
+            <div className="pageHeader">
+                <div>
+                    <span>{title}</span>
+                    <span className="room-id">房间号：{roomId}</span>
+                </div>
                 <span onClick={this.props.change}>quit</span>
             </div>
         )
     }
 }
-function mapStateToProps({header:{title}}){
+function mapStateToProps({header: {title}, register: {roomId}}){
     return {
-        title
+        title,
+        roomId
     }
 }
 function mapDispatchToProps(dispatch){

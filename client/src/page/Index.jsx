@@ -12,7 +12,7 @@ class Index extends Component {
         super(props);
     }
     componentWillMount(){
-        if(!this.props.hasRoomValue){
+        if(!this.props.hasRoomId){
             this.props.history.push('/register');
         }
     }
@@ -40,6 +40,6 @@ class Index extends Component {
 
 export default connect((state)=>{
     return {
-        hasRoomValue:state.register.hasRoomValue
+        hasRoomId:state.register.hasRoomId
     }
 },null)(Index);

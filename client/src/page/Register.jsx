@@ -60,6 +60,10 @@ class Room extends Component {
         let {showJoin} = this.state;
         let {createRoom, joinRoom, value} = this.props;
         if(showJoin){
+            if(!value){
+                alert("不能为空");
+                return ;
+            }
             joinRoom(value);
         }else{
             createRoom();
@@ -91,15 +95,20 @@ class Register extends Component {
     componentDidMount(){
         this.props.getNickname();
     }
+    componentWillReceiveProps({hasRoomId, history}){
+        if(hasRoomId){
+            history.replace('/');
+        }
+    }
     renderChild(){
-        let {roomValue, nickName, handleChangeNickName, handleChangeRoomValue, hasNickname, saveNickname,createRoom,joinRoom} = this.props;
+        let {roomId, nickName, handleChangeNickName, handleChangeRoomId, hasNickname, saveNickname,createRoom,joinRoom} = this.props;
         if(hasNickname){
             return (
                 <Room
-                    onChange = {(value)=>{handleChangeRoomValue(value)}}
-                    value = {roomValue}
-                    createRoom = {()=>{createRoom()}}
-                    joinRoom = {(value)=>{joinRoom(value)}}
+                    onChange = {(value)=>{handleChangeRoomId(value)}}
+                    value = {roomId}
+                    createRoom = {()=>{createRoom(nickName)}}
+                    joinRoom = {(value)=>{joinRoom(nickName, value)}}
                 />
             );
         }else{
@@ -124,9 +133,9 @@ class Register extends Component {
 }
 
 function mapStateToProps(state){
-    let {register:{roomValue, nickName, hasNickname}} = state;
+    let {register:{roomId, nickName, hasNickname, hasRoomId}} = state;
     return {
-        roomValue, nickName, hasNickname
+        roomId, nickName, hasNickname, hasRoomId
     }
 }
 
@@ -135,7 +144,7 @@ function mapDispatchToProps(dispatch){
         handleChangeNickName(value){
             dispatch(changeRegisterNickname(value))
         },
-        handleChangeRoomValue(value){
+        handleChangeRoomId(value){
             dispatch(changeRegisterRoom(value))
         },
         getNickname(){
@@ -144,11 +153,12 @@ function mapDispatchToProps(dispatch){
         saveNickname(value){
             dispatch(saveNickname(value))
         },
-        createRoom(){
-            dispatch(createRoom())
+        createRoom(nickname){
+            dispatch(createRoom(nickname))
         },
-        joinRoom(value){
-            dispatch(joinRoom(value))
+        joinRoom(nickname, roomId){
+            console.log(nickname);
+            dispatch(joinRoom(nickname, roomId))
         }
     }
 }

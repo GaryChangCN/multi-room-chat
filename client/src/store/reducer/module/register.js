@@ -1,14 +1,16 @@
 import {REGISTER} from '../../actionType';
 let defaultState = {
-    roomValue : "",
+    roomId : "",
     nickName : "",
     hasNickname: false,
-    hasRoomValue: false
+    hasRoomId: false
 }
 export default function reducer(state = defaultState, action){
     switch (action.type) {
         case REGISTER.CHANGE_ROOM:
-            return {...state,roomValue:action.payload}
+            return {...state,roomId:action.payload}
+        case REGISTER.SAVE_ROOM:
+            return {...state,hasRoomId:action.payload}
         case REGISTER.CHANGE_NICKNAME:
             return {...state,nickName:action.payload}
         case REGISTER.SAVE_NICKNAME:

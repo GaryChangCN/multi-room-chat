@@ -1,5 +1,5 @@
 var defaultState = {
-	title:'name'
+    title:'聊天室'
 }
 import {HEADER} from '../../actionType';
 function reducer(state = defaultState, action) {
