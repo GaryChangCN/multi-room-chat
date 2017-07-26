@@ -48,7 +48,9 @@ io.on('connect', (socket) => {
     });
     socket.on('disconnect', () => {
         console.log("断开连接", new Date());
-        room.leave(socket.id);
+        room.leave(socket.id, (roomId) => {
+            freshRoomMemberList(roomId);
+        });
     });
     socket.on('message', (data, roomId) => {
         data.time = new Date();
