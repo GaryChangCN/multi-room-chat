@@ -19,3 +19,7 @@ export const USERINPUT = {
     SEND: 'SEND_USER_INPUT',
     CLEAR: 'CLEAR_USER_INPUT'
 }
+
+export const ONLINELIST = {
+    FRESH: 'ONLINELIST_FRESH'
+}

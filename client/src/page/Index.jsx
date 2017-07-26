@@ -12,8 +12,9 @@ class Index extends Component {
         super(props);
     }
     componentWillMount(){
-        if(!this.props.hasRoomId){
-            this.props.history.push('/register');
+        let {hasRoomId, history, location} = this.props;
+        if(!hasRoomId){
+            history.push('/register' + location.search);
         }
     }
     render(){

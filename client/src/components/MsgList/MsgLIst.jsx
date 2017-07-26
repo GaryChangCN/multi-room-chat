@@ -24,14 +24,14 @@ class MsgList extends Component {
                 <div className="clear-screen" onClick={clearScreen}>清屏</div>
                 <div className="msg-list" ref={(ref)=>{this.containerRef=ref}}>
                     <div className="msg-item-container" ref={(ref)=>{this.innerRef=ref}}>
-                        {value.map(({user, msg, time}, i) => {
+                        {value.map(({nickname, message, time}, i) => {
                             return (
                                 <div className="msg-item" key={i}>
                                     <div className="user-name">
-                                        {convertTimeStamp(time)} {user}
+                                        {convertTimeStamp(time)} {nickname}
                                     </div>
                                     <div className="user-msg">
-                                        {msg}
+                                        {message}
                                     </div>
                                 </div>
                             )

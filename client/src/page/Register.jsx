@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import qs from 'query-string';
 import {changeRegisterNickname, changeRegisterRoom, getNickname, saveNickname, createRoom, joinRoom} from '../store/action/register';
 import './register.less';
 
@@ -38,6 +39,13 @@ class Room extends Component {
             rightText: "加入房间"
         }
     }
+    componentDidMount(){
+        let {location, onChange} = this.props;
+        let query = qs.parse(location.search);
+        if(query.roomId){
+            onChange(query.roomId)
+        }
+    }
     handleLeft(){
         let {showJoin} = this.state;
         if(showJoin){
@@ -70,7 +78,10 @@ class Room extends Component {
         }
     }
     handleChange(e){
-        this.props.onChange(e.target.value)
+        let {value} = e.target;
+        let {location, history, onChange} = this.props;
+        this.props.history.push(location.pathname + '?' + qs.stringify({roomId: value}))
+        onChange(value);
     }
     render(){
         let {showJoin, title, leftText, rightText} = this.state;
@@ -95,13 +106,13 @@ class Register extends Component {
     componentDidMount(){
         this.props.getNickname();
     }
-    componentWillReceiveProps({hasRoomId, history}){
+    componentWillReceiveProps({hasRoomId, history, roomId}){
         if(hasRoomId){
-            history.replace('/');
+            history.replace('/?roomId=' + roomId);
         }
     }
     renderChild(){
-        let {roomId, nickName, handleChangeNickName, handleChangeRoomId, hasNickname, saveNickname,createRoom,joinRoom} = this.props;
+        let {roomId, nickName, handleChangeNickName, handleChangeRoomId, hasNickname, saveNickname,createRoom,joinRoom,location,history} = this.props;
         if(hasNickname){
             return (
                 <Room
@@ -109,6 +120,8 @@ class Register extends Component {
                     value = {roomId}
                     createRoom = {()=>{createRoom(nickName)}}
                     joinRoom = {(value)=>{joinRoom(nickName, value)}}
+                    location = {location}
+                    history = {history}
                 />
             );
         }else{
@@ -157,7 +170,6 @@ function mapDispatchToProps(dispatch){
             dispatch(createRoom(nickname))
         },
         joinRoom(nickname, roomId){
-            console.log(nickname);
             dispatch(joinRoom(nickname, roomId))
         }
     }

@@ -1,8 +1,26 @@
 import io from 'socket.io-client';
 
-const remote = '127.0.0.1:3333';
-const socket = io(remote);
-let roomId = "";
+export const remote = '127.0.0.1:3333';
+export const socket = io(remote);
+
+let M = {
+    nickname: null,
+    roomId: null
+}
+
+// ...这里是监听返回消息地方--->更新消息列表和在线列表
+import {updateMessageList} from '../store/action/msgList'
+import {freshOnlineList} from '../store/action/onlineList';
+import store from '../store/index';
+socket.on('message', ({data, err}) => {
+    let {nickname, time, message} = data;
+    store.dispatch(updateMessageList(data));
+});
+socket.on('roomMember',({data, err}) => {
+    let {roomMember} = data;
+    store.dispatch(freshOnlineList(roomMember));
+})
+// ....................
 
 export function fetchCreateRoom (nickname){
     socket.emit('create',{nickname});
@@ -10,6 +28,10 @@ export function fetchCreateRoom (nickname){
         socket.on('create', ({data, err}) => {
             if(err){
                 reject(err);
+            }
+            M = {
+                nickname,
+                roomId: data.roomId
             }
             resolve(data.roomId);
         })
@@ -23,9 +45,21 @@ export function fetchJoinRoom(nickname, roomId){
             if(err){
                 reject(err);
             }
+            M = {
+                nickname,
+                roomId: data.roomId
+            }
             resolve(data.roomId);
         })
     })
+}
+
+export function fetchSendUserInput(message){
+    let data = {
+        nickname: M.nickname,
+        message
+    }
+    socket.send(data, M.roomId);
 }
 
 export const controlNickname = {
@@ -45,5 +79,4 @@ socket.on('connect',() => {
 });
 socket.on('disconnect',() => {
     console.log("断开连接");
-    // alert("与服务器断开了连接");
 });

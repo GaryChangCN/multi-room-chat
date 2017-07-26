@@ -1,10 +1,12 @@
-var defaultState = {
-    value: [1,2,34,5,6,7],
-    owner: 2   
+import {ONLINELIST} from '../../actionType';
+let defaultState = {
+    value: []
 }
 
 export default function reducer(state = defaultState, action){
     switch(action.type){
+        case ONLINELIST.FRESH:
+        return {...state, value: action.payload}
         default:
         return state;
     }

@@ -1,12 +1,11 @@
 import createAction from '../createAction';
 import {USERINPUT} from '../actionType';
+import {fetchSendUserInput} from '../../service';
 
-export function sendUserInput(value){
+export function sendUserInput(message){
     return (dispatch) => {
-        // .....  websocket
-        console.log(value);
-        // ....
-        dispatch(createAction(USERINPUT.SEND));
+        fetchSendUserInput(message);
+        
         dispatch(createAction(USERINPUT.CLEAR));
     }
 }

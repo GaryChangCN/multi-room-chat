@@ -28,9 +28,10 @@ class OnlineList extends Component {
     }
 }
 
-function mapStateToProps({onlineList: {value, owner}}){
+function mapStateToProps({onlineList: {value}, register: {nickName}}){
     return {
-        value,owner
+        value,
+        owner: nickName
     }
 }
 export default connect(mapStateToProps,null)(OnlineList);
