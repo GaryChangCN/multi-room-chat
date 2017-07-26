@@ -16,7 +16,7 @@ if (process.env.NODE_ENV == "production") {
             .optimize
             .UglifyJsPlugin()
     ];
-    entry = ["babel-polyfill", "./src/main.tsx"];
+    entry = ["babel-polyfill", "./src/index.jsx"];
 }
 module.exports = {
     entry,
