@@ -1,4 +1,8 @@
-[中文](#多房间聊天室) [English](#chat-room)
+[中文](#多房间聊天室) | [English](#chat-room)
+
+## Demo
+
+[Demo](http://garychang.cn/show/multiRoomChat.html#/)
 
 ## 多房间聊天室
 
