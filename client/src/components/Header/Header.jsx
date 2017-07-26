@@ -15,7 +15,7 @@ class Header extends Component {
                     <span>{title}</span>
                     <span className="room-id">房间号：{roomId}</span>
                 </div>
-                <span onClick={this.props.change}>quit</span>
+                <span onClick={this.props.change}> </span>
             </div>
         )
     }
@@ -29,7 +29,7 @@ function mapStateToProps({header: {title}, register: {roomId}}){
 function mapDispatchToProps(dispatch){
     return {
         change(){
-            dispatch(updateMessageList());
+            // dispatch(updateMessageList());
         }
     }
 }

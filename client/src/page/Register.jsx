@@ -89,7 +89,7 @@ class Room extends Component {
         return (
             <div className="room">
                 <div className="title">{title}</div>
-                {showJoin ? <input type="number" onChange={this.handleChange.bind(this)} value={value}/> : <div className="place"></div>}
+                {showJoin ? <input type="number" onChange={this.handleChange.bind(this)} value={value} autoFocus/> : <div className="place"></div>}
                 <div className="btn-group">
                     <div className="left" onClick={this.handleLeft.bind(this)}>{leftText}</div>
                     <div className="right" onClick={this.handleRight.bind(this)}>{rightText}</div>
