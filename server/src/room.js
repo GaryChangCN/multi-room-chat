@@ -30,7 +30,9 @@ class Room {
                 }
             }
         }
-        this.roomList[roomId].splice(index, 1);
+        if(this.roomList[roomId]){
+            this.roomList[roomId].splice(index, 1);
+        }
         cb(roomId);
         if(this.roomList[roomId].length === 0){
             delete this.roomList[roomId];
